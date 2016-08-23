@@ -1,6 +1,6 @@
 # option-selection2.js
 
-A sane, dependency-free alternative to Shopify's multiple option JavaScript helper (option_selection.js) with optional checkbox support.
+A sane, flexible, dependency-free alternative to Shopify's multiple option JavaScript helper (option_selection.js) with optional checkbox support and the ability to structure your HTML however you please.
 
 Replace `<select name="id" ...>...</select>` with:
 
@@ -165,8 +165,6 @@ Instantiate `Shopify.OptionSelectors2` JS:
       enableHistoryState: true
     });
 
-    productOptionSelectors.selectVariant( 15554208966 );
-
     function callback(variant, container) {
       console.log( variant );
 
@@ -193,8 +191,6 @@ You can have as many `Shopify.OptionSelectors2` instances as you want, here's an
         onVariantSelected: callback
       });
 
-      optionSelectors.selectVariant( 15554208966 );
-
       function callback(variant, container) {
         console.log( variant );
 
@@ -203,6 +199,35 @@ You can have as many `Shopify.OptionSelectors2` instances as you want, here's an
         // update image with variant image
       }
     });
+  })();
+</script>
+```
+
+Each `Shopify.OptionSelectors2` instance has a `selectVariant` method which you can use use like below; this will select all correct option choices in the inputs and fire the `onVariantSelected` callback with the selected variant. This could come in handy when wanting to change the selected variant depending on which product image is clicked:
+
+```
+<script>
+  (function () {
+    var product = {{ product | json }};
+
+    var container = ".js-product-options";
+
+    var productOptionSelectors = new Shopify.OptionSelectors2(container, {
+      product: product,
+      onVariantSelected: callback,
+      enableHistoryState: true
+    });
+
+    // Select the variant with the ID of `15554208966`
+    productOptionSelectors.selectVariant( 15554208966 );
+
+    function callback(variant, container) {
+      console.log( variant );
+
+      // enable / disable add to cart button
+      // change price
+      // update image with variant image
+    }
   })();
 </script>
 ```
