@@ -1,6 +1,6 @@
 # option-selection2.js
 
-A sane alternative to Shopify's multiple option JavaScript helper (option_selection.js) with optional checkbox support.
+A sane, dependency-free alternative to Shopify's multiple option JavaScript helper (option_selection.js) with optional checkbox support.
 
 Replace `<select name="id" ...>...</select>` with:
 
@@ -83,7 +83,7 @@ If you want checkboxes:
 </div>
 ```
 
-If you want a mix or selects and checkboxes (update the logic to suit your needs, this example renders checkboxes for the product option titled "Material"):
+If you want a mix of selects and checkboxes (update the logic to suit your needs, this example renders checkboxes for the product option titled "Material"):
 
 ```
 <div class="js-product-options">
